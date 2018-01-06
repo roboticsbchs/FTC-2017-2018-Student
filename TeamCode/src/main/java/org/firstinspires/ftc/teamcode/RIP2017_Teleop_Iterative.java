@@ -79,10 +79,6 @@ public class RIP2017_Teleop_Iterative extends OpMode{
     HardwareRIP robot       = new HardwareRIP(); // used to define a robot's hardware
     // could also use HardwareRIPMatrix class.
 
-    double          clawOffset  = 0.0 ;                  // Servo mid position
-    final double    CLAW_SPEED  = 0.02 ;                 // sets rate to move servo
-    double          rightClaw;
-    double          leftClaw;
     /*
      * Code to run ONCE when the driver hits INIT
      */
@@ -161,30 +157,29 @@ public class RIP2017_Teleop_Iterative extends OpMode{
         // Use gamepad2 dpad to lift/lower the lift
 
         BLeftNS = -gamepad2.left_stick_y;
-        if (abs(BLeftNS) > 0) {
+        if (abs(BLeftNS) > 0.05) {
             robot.verticalLift.setPower(BLeftNS);}
         else {
             robot.verticalLift.setPower(0);}
 
         // Use gamepad2 triggers to close the claw
         BRightTrig = (gamepad2.right_trigger);
-        if (BRightTrig > 0) {
+        if (BRightTrig > 0.05) {
             robot.botrightClaw.setPosition(robot.botrightClaw.getPosition() - BRightTrig);
             robot.botleftClaw.setPosition(robot.botleftClaw.getPosition() + BRightTrig);}
 
         BLeftTrig = (gamepad2.left_trigger);
-        if (BLeftTrig > 0) {
-            robot.toprightClaw.setPosition(robot.toprightClaw.getPosition() + BLeftTrig);
-            robot.topleftClaw.setPosition(robot.topleftClaw.getPosition() - BLeftTrig);}
+        if (BLeftTrig > 0.05) {
+            robot.toprightClaw.setPosition(robot.toprightClaw.getPosition() - BLeftTrig);
+            robot.topleftClaw.setPosition(robot.topleftClaw.getPosition() + BLeftTrig);}
 
         // Open claws to start position with gamepad 2 bumpers
         if (gamepad2.right_bumper) {
             robot.botrightClaw.setPosition(1.0);
             robot.botleftClaw.setPosition(0.0); }
         if (gamepad2.left_bumper) {
-            robot.toprightClaw.setPosition(0.0);
-            robot.topleftClaw.setPosition(1.0);}
-
+            robot.toprightClaw.setPosition(1.0);
+            robot.topleftClaw.setPosition(0.0);}
             // Send telemetry message to signify robot running;
         /*
         telemetry.addData("claw",  "Offset = %.2f", clawOffset);

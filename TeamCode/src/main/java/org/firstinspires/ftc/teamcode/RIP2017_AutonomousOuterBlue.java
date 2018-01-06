@@ -10,9 +10,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 /**
  * Created by cookja on 10/27/2017.
  */
-@Autonomous(name="Forward Power50 Time1333ms", group="RIP2017bot")
+@Autonomous(name="Autonomous Outer Blue", group="RIP2017bot")
 //@Disabled
-public class Forward50power1333ms extends LinearOpMode {
+public class RIP2017_AutonomousOuterBlue extends LinearOpMode {
 
     DcMotor leftFrontDrive;
     DcMotor rightFrontDrive;
@@ -34,7 +34,7 @@ public class Forward50power1333ms extends LinearOpMode {
         verticalLift    = hardwareMap.dcMotor.get("vertical_Lift");
 
         botRightClaw = hardwareMap.servo.get("bot_right_hand");
-        botLeftClaw = hardwareMap.servo.get("bot_right_hand");
+        botLeftClaw = hardwareMap.servo.get("bot_left_hand");
 
         HardwareRIP robot = new HardwareRIP();
 
@@ -52,19 +52,25 @@ public class Forward50power1333ms extends LinearOpMode {
         rightRearDrive.setPower(0.5);
         sleep(1000);
 
-        leftFrontDrive.setPower(-0.222);
-        leftRearDrive.setPower(-0.222);
-        rightFrontDrive.setPower(-0.222);
-        rightRearDrive.setPower(-0.222);
-        sleep(2000);
+        leftFrontDrive.setPower(0.3);
+        leftRearDrive.setPower(0.3);
+        rightFrontDrive.setPower(0.3);
+        rightRearDrive.setPower(0.3);
+        sleep(1500);
 
         botLeftClaw.setPosition(0.0);
         botRightClaw.setPosition(1.0);
-        leftFrontDrive.setPower(-0.3);
-        leftRearDrive.setPower(-0.3);
-        rightFrontDrive.setPower(0.3);
-        rightRearDrive.setPower(0.3);
-        sleep(500);
+        leftFrontDrive.setPower(-0.30);
+        leftRearDrive.setPower(-0.30);
+        rightFrontDrive.setPower(0.30);
+        rightRearDrive.setPower(0.30);
+        sleep(600);
+
+        leftFrontDrive.setPower(0.25);
+        leftRearDrive.setPower(0.25);
+        rightFrontDrive.setPower(-0.25);
+        rightRearDrive.setPower(-0.25);
+        sleep(150);
 
         leftFrontDrive.setPower(0);
         leftRearDrive.setPower(0);
